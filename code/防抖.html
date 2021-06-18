@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="input">
+</body>
+<script>
+  /**
+   * 匿名函数
+  */
+  function debounce(fn, interval) {
+    let timer
+    console.log(timer);
+    return function() {
+      console.log(timer);
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        console.log(this);
+        fn.apply(this)
+        // fn()
+      }, interval);
+    }
+  }
+  let input = document.getElementById('input')
+  function fn() {
+    console.log('防抖成功' + new Date());
+  }
+  let interval = 2000
+  input.addEventListener('click', debounce(fn, interval))
+  /**
+   * 第一个参数 事件名：input、click
+   * 第二个 需要执行的函数
+   * 
+  */
+  // input.addEventListener('click', fn)
+</script>
+</html>
