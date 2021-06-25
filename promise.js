@@ -3,6 +3,7 @@ async function async1() {
   await async2();
   console.log('async1 end')
 }
+// async会重新返回一个promise对象，所以会在promise23之后
 async function async2() {
   console.log('async2 start');
   return new Promise((resolve, reject) => {
@@ -24,3 +25,17 @@ new Promise(function (resolve) {
   console.log('promise3');
 });
 console.log('script end');
+
+/**
+ * script start
+ * async1 start
+ * async2 start
+ * async2 promise
+ * promise1
+ * script end
+ * async1 end
+ * 
+ * promise2
+ * promise3
+ * setTimeout
+ */

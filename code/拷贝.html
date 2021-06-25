@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  var obj = {
+    name: 'like',
+    hobby: ['学习', { study : '数学'}],
+    date: new Date(121),
+    reg: /^[a-zA-Z0-9\u4E00-\u9FA5]+$/
+  }
+// ***************** 浅拷贝
+  // function clone(obj) {
+  //   var cloneObj = {}
+  //   for(let i in obj) {
+  //     cloneObj[i] = obj[i]
+  //   }
+  //   return cloneObj
+  // }
+  // var cloneObj = clone(obj)
+  // obj.name = 'wang'
+  // obj.hobby[0] = '玩耍'
+  // console.log(obj)
+  // console.log(cloneObj);
+// ***************** 
+// ***************** 深拷贝
+  function deepClone(obj) {
+    if (typeof obj !== 'object') return obj
+    if (obj instanceof Date) return new Date(obj)
+    if (obj instanceof RegExp) return new RegExp(obj)
+    var cloneObj = {}
+    for (let i in obj) {
+      cloneObj[i] = deepClone(obj[i])
+    }
+    return cloneObj
+  }
+  var cloneObj = deepClone(obj)
+  obj.name = 'wang'
+  obj.hobby[0] = '玩耍'
+  console.log(obj)
+  console.log(cloneObj);
+
+
+</script>
+</body>
+</html>

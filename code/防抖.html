@@ -12,28 +12,36 @@
 <script>
   /**
    * 匿名函数
+   * 一定时间之内没有再次触发事件，事件处理函数才会执行一次，如果在设定时间之前再次触发，就重新记时
   */
   function debounce(fn, interval) {
     let timer
-    console.log(timer);
-    return function() {
-      console.log(timer);
+    // 闭包
+    return function(e) {
+      // timer变量需要一直保存在内存当中
       if (timer) {
         clearTimeout(timer)
       }
       timer = setTimeout(() => {
         console.log(this);
-        fn.apply(this)
-        // fn()
+        // fn.apply(this, arguments)
+        fn(e)
       }, interval);
     }
   }
   let input = document.getElementById('input')
-  function fn() {
+  // 业务代码，在这里出现结果，callback
+  function fn(e) {
     console.log('防抖成功' + new Date());
+    console.log(e.target.value);
   }
   let interval = 2000
-  input.addEventListener('click', debounce(fn, interval))
+  // 另一种写法
+  // input.addEventListener('keyup', debounce(fn, interval))
+  var debounceFunc = debounce(fn, interval)
+  input.addEventListener('keyup', function (e) {
+    debounceFunc(e)
+  })
   /**
    * 第一个参数 事件名：input、click
    * 第二个 需要执行的函数

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节流</title>
+</head>
+<body>
+  <input type="text" id="input">
+  <script>
+    /**
+     * 一段时间内只做一件事
+     * 时间为1s，1s内点击100次，也只执行一次
+     * */
+    let input = document.getElementById('input');
+    function fn(e) {
+      console.log('节流成功');
+      console.log(e);
+    }
+    var throleFunc = throle(fn, 1000)
+    input.addEventListener('click', function (e) {
+      throleFunc(e)
+    })
+    function throle (func, wait) {
+      let timer // 就可以一直存储到内存当中
+      return function (e) {
+        if (!timer) {
+          timer = setTimeout(() => {
+            func()
+            timer = null
+          }, wait);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

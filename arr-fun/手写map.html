@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写map</title>
+</head>
+<body>
+  <script>
+    // 回调函数是可以执行的代码段，可以当作参数
+    // 可以延时执行
+    // 有一个缺点，会形成回调地狱
+    // 传入回调函数，实现新的数组
+    function map(arr, callback) {
+      // 检查参数是否正确
+        if (!Array.isArray(arr) || !arr.length || typeof callback !== 'function') {
+          return []
+        }
+        let result = []
+        for(let i = 0 ; i < arr.length; i++) {
+          result.push(callback(arr[i], i , arr))
+        }
+        return result
+    }
+    var arr = [1,2,3]
+    var res = map(arr, (item, i, arr) => {
+      console.log(item, i ,arr);
+      return item * 2
+    })
+    console.log(res);
+  </script>
+</body>
+</html>
