@@ -24,6 +24,7 @@ function combineNoParam() {
    */
   // 无关参数的个数多少
   var args = Array.prototype.slice.call(arguments);
+  console.log('weweew');
   console.log(arguments);
   console.log(args);
   let arr = [].concat.apply([], arguments)

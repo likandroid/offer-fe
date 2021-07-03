@@ -8,5 +8,5 @@ let f = fn(6)
 // f = function () {
 //   console.log(7 + 7);
 // }
-f(7)
-console.log(x)
+f(7) // 14
+console.log(x) // 5

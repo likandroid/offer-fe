@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex.html</title>
+  <style>
+    .container {
+      display: flex;
+      height: 300px;
+    }
+    .box {
+      display: flex;
+      /* flex: 1; */
+      /* 放大比例，默认为0，存在剩余空间，也不放大 */
+      flex-grow: 1;
+      /* 缩小比例，默认为1，空间不足，该项目默认缩小 */
+      flex-shrink: 1;
+      /* 默认为auto 定义了在分配多余空间之前，项目占据的主轴空间（main size） */
+      flex-basis: 0;
+    }
+    .red {
+      /* flex-basis: 500px; */
+      background-color: red;
+    }
+    .blue {
+      flex-shrink: 2;
+      background-color: blue;
+      /* flex-basis: 500px; */
+    }
+    .orange {
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+剩余空间 = 父容器空间－子容器1.flex-basis/width - 子容器2.flex-basis/width - …
+如果父容器空间不够，就走压缩 flex-shrink，否则走扩张 flex-grow;
+如果你希望某个容器在任何时候都不被压缩，那设置 flex-shrink: 0;
+如果子容器的 flex-basis 设置为 0(width 也可以，不过 flex-basis 更符合语义)，那么计算剩余空间的时候将不会为子容器预留空间。
+如果子容器的 flex-basis 设置为 auto(width 也可以，不过 flex-basis 更符合语义)，那么计算剩余空间的时候将会根据子容器内容的多少来预留空间。 -->
+  <div class="container">
+    <div class="box red"></div>
+    <div class="box blue"></div>
+    <div class="box orange"></div>
+  </div>
+</body>
+</html>

@@ -7,87 +7,25 @@
   <title>Document</title>
 </head>
 <body>
+  <input type="text" id="a">
+  <div id="b"></div>
   <script>
-    // var target = {
-    //   name: 'like'
-    // }
-    /**
-     * Proxy 可以对目标对象的读取、函数调用等操作进行拦截，然后进行操作处理，
-     * 它不直接操作对象，而是像代理模式，通过对象的代理对象进行操作
-     * new Proxy(target, handler)表示生成一个Proxy实例
-     * target参数表示所要拦截的目标对象，handler参数也是一个对象，用来定制拦截行为
-     */
-    // var targetWithLog = new Proxy(target, {
-    //   set: function (target, key, value) {
-    //     target[key] = value
-    //   },
-    //   // 第四个参数 receiver 表示原始操作行为所在对象，一般是 Proxy 实例本身。
-    //   // set: function (target, key, value, receiver) {
-    //   //   target[key] = receiver
-    //   // },
-    //   get: function (target, key) {
-    //     return target[key]
-    //   }
-    // })
-    // console.log(targetWithLog.name); // like 实际执行 handler.get
-    // targetWithLog.name = 'wang'// 实际执行 handler.set
-    // console.log(targetWithLog.name); // wang
-    // console.log(target.name); // wang
-    // // 继承
-    // let extendTarget = Object.create(targetWithLog)
-    // extendTarget.name = 'others'
-    // console.log(extendTarget, extendTarget.name);
-
-    // // -------------- apply
-    // /**
-    //  * Reflect 可以用于获取目标对象的行为，它与 Object 类似，但是更易读，
-    //  * 为操作对象提供了一种更优雅的方式。它的方法与 Proxy 是对应的。
-    //  * target 表示目标对象，ctx 表示目标对象上下文，args 表示目标对象的参数数组。
-    // */
-    // function sum(a, b) {
-    //   return a + b
-    // }
-    // let handle = {
-    //   apply: function (target, ctx, args) {
-    //     console.log('apply。。。。');
-    //     console.log(...arguments);
-    //     return Reflect.apply(...arguments)
-    //   }
-    // }
-    // let proxy = new Proxy(sum, handle)
-    // console.log(proxy(2, 1));
-    // // -------------- construct(target, args) 用于拦截 new 命令。返回值必须为对象。
-    // let handler = {
-    //     construct: function (target, args, newTarget) {
-    //       console.log('handle construct')
-    //       return Reflect.construct(target, args, newTarget)
-    //     }
-    //   }
-    //   class Exam {
-    //     constructor(name) {
-    //       this.name = name
-    //     }
-    //   }
-    //   let ExamProxy = new Proxy(Exam, handler)
-    //   let proxyObj = new ExamProxy('Tom')
-    //   console.log(proxyObj)
-    //   console.log(new Exam('lik'));
-      // handle construct
-      // exam {name: "Tom"}
-    // ------------- defineProperty(target, propKey, propDesc) 
-    let handler = {
-        defineProperty: function (target, propKey, propDesc) {
-          console.log("handle defineProperty");
-          return false;
-        }
+    var obj = {};  //定义一个空对象
+    var val = 'zhao';  //赋予初始值
+    Object.defineProperty(obj, 'val', {//定义要修改对象的属性
+      get: function () {
+        return value;
+      },
+      set: function (newVal) {
+        value = newVal;//定义val等于修改后的内容
+        document.getElementById('a').value = value;//让文本框的内容等于val
+        document.getElementById('b').innerHTML = value;//让span的内容等于val
       }
-      let target = {}
-      let proxy = new Proxy(target, handler)
-      proxy.name = "Tom"
-      // handle defineProperty
-      
-      console.log(target);
-// {name: "Tom"}
+    });
+    document.addEventListener('keyup', function (e) {//当在文本框输入内容时让对象里你定义的val等于文本框的值
+      obj.val = e.target.value;
+    })
+
   </script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 三角形 */
+    .tri {
+      width: 0px;
+      height: 0px;
+      border: 30px solid transparent;
+      border-bottom: 30px solid red;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" name="imag" id="file">
+  <span>我是某某某</span>
+  <div class="tri"></div>
+</body>
+<script>
+  let file = document.getElementById('file')
+  file.addEventListener('input', function (res) {
+    let files = res.target.files
+    console.log(res);
+  })
+  console.log(document.compatMode == "CSS1Compat" ? "当前处于标准模式" : "当前处于混杂模式");
+  
+
+</script>
+</html>
