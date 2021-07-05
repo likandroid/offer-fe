@@ -5,6 +5,7 @@ var moveZeroes = function (nums) {
       if (i > j) {
         nums[j] = nums[i];
         nums[i] = 0;
+        console.log(nums);
       }
       j++;
     }

@@ -19,10 +19,23 @@ git config --global user.email 'your_email@xxx.com'
 + apply 与 pop 区别
 apply 将暂存的内容恢复到工作区后并不丢弃，pop 则在恢复后直接删除
 
-### 回滚(撤销 commit 记录)
-- git reset
+- git status 显示有变更的文件
+- git reset 回滚(撤销 commit 记录)
+- .gitignore 匹配文件规则
+- git checkout - 切换到上一个分支
+- git merge [branch] 合并指定分支到当前分支
+- git cherry-pick [commit] 选择一个commit，合并进当前分支
+- git branch -d [branch-name] 删除分支
+- git push origin --delete [branch-name] 删除远程分支
+- git branch -dr [remote/branch] 删除远程分支
+- git fetch [remote] 下载远程仓库的所有变动
+- git remote -v 显示所有远程仓库
+- git stash 放入暂存区
+- git stash 放出暂存区，显示变动的文件
+- git revote
 
-## .gitignore 匹配文件规则
+在利用github实现多人合作程序开发的过程中，我们有时会出现错误提交的情况，此时我们希望能撤销提交操作，让程序回到提交前的样子，本文总结了两种解决方法：回退（reset）、反做（revert）。
+
 
 *.sample 　　 # 忽略所有 .sample 结尾的文件
 !lib.sample 　　 # 但 lib.sample 除外

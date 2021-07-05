@@ -95,3 +95,28 @@ let eb = new EventBus();
 eb.on('event1', params => console.log(22, params));
 eb.emit('event1', 33)
 
+
+
+var myEvent = new CustomEvent('event_name', {
+  detail: {//数据必须放在detail对象里面
+    data: "携带数据"
+  },
+  bubbles: true,    //是否冒泡
+  cancelable: false //是否取消默认事件
+});
+//注册到window
+window.addEventListener('event_name', function (event) {
+  console.log('携带数据为：', event.detail);
+});
+//懒加载 触发自定义事件
+function dispatchEvent() {
+  if (window.dispatchEvent) {
+    dispatchEvent = function () {
+      window.dispatchEvent(myEvent);
+    }
+  } else {
+    dispatchEvent = function () {
+      window.fireEvent(myEvent);//兼容ie
+    }
+  }
+}

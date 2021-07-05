@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .common {
+      width: 300px;
+      height: 300px;
+      display: flex;
+    }
+    .a {
+      height: 100px;
+      color: orange;
+      background-color: brown;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .b {
+      height: 100px;
+      background-color: orangered;
+      justify-content: center;
+      align-items: center;
+    }
+    .c {
+      height: 100px;
+      background-color:blue;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- <div></div> -->
+    <div class="a common">a</div>
+    <div class="b common">b</div>
+    <div class="c common">
+      <div>aa</div>
+    </div>
+  </div>
+</body>
+</html>
