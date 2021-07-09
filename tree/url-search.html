@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <span style="font-size:14px;">
+  </span>
+  <script>
+    var url = "http://www.taobao.com/index.php?keya=00&keyb=11&keyc=22";
+    function parseQueryString(url){
+      var str=url.split("?")[1];
+        var iterms = str.split("&");
+        var arr,Json={};
+        for(var i=0;i<iterms.length; i++){
+          arr = iterms[i].split("=");
+          Json[arr[0]]=arr[1];
+       }
+       console.log(arr);
+        return Json;
+      }
+
+    var obj= parseQueryString(url);
+    console.log(obj);
+  </script>
+</body>
+</html>

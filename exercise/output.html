@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var a = 1;
+    (function a() {
+      a = 2
+      // 输出a本身
+      // a() {
+      //   a = 2
+      //   console.log(a)
+      // }
+      /**
+       * 首先，不存在变量提升和函数提升的问题，因为 (function (){}){} 是自执行函数，(function (){})是表达式；
+这里的重点很明显是 a=2; 这行代码，
+因为 {} 就是作用域，那么 a=2 执行的不是给全局变量 a 赋值为 2，
+而是想要将自执行函数的name 'a', 更改为 2，
+但这句话在 console.log 后证实未执行，即这句代码被忽略了。
+       * */
+      console.log(a)
+    })();
+    console.log(a)
+  </script>
+</body>
+</html>

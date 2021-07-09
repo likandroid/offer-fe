@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let func = (arr) => {
+        let len = arr.length
+        let res = [] // 所有排列结果
+        /**
+         * 【全排列算法】
+         * 说明：arrange用来对arr中的元素进行排列组合，将排列好的各个结果存在新数组中
+         * @param tempArr：排列好的元素
+         * @param leftArr：待排列元素
+         */
+        let arrange = (tempArr, leftArr) => {
+          if (tempArr.length === len) { // 这里就是递归结束的地方
+            // res.push(tempArr) // 得到全排列的每个元素都是数组
+            res.push(tempArr.join('')) // 得到全排列的每个元素都是字符串
+          } else {
+            leftArr.forEach((item, index) => {
+              let temp = [].concat(leftArr)
+              temp.splice(index, 1)
+              // 此时，第一个参数是当前分离出的元素所在数组；第二个参数temp是传入的leftArr去掉第一个后的结果
+              arrange(tempArr.concat(item), temp) // 这里使用了递归
+            })
+          }
+        }
+        arrange([], arr)
+        return res
+      }
+      console.log('结果：', func(['A', 'B', 'C', 'D']))
+
+  </script>
+</body>
+</html>

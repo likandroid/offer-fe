@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Animal(name) {
+      this.name = name
+    }
+    Animal.prototype.age = 14
+    // function modnew() {
+    //   let obj = {}
+    //   let Fn = [].shift.call(arguments)
+    //   obj.__proto__ = Fn.prototype
+    //   Fn.apply(obj, arguments)
+    //   return obj
+    // }
+
+    // 让类数组调用数组的方法,把类数组转为数组
+    // [].slice.call(arguments)
+    let cat = new modnew(Animal, '猫')
+    console.log(cat.name, cat.age)
+
+    //升级
+
+    /**
+     * • 创建一个空对象，将它的引用赋给 this，继承函数的原型。
+      • 通过 this 将属性和方法添加至这个对象
+      • 最后返回 this 指向的新对象，也就是实例（如果没有手动返回其他的对象）
+     */
+    function modnew() {
+      let obj = {}
+      // 删除并拿到arguments的第一项
+      let Fn = [].shift.call(arguments)
+      console.log(Fn);
+      obj.__proto__ = Fn.prototype
+      return typeof (Fn.apply(obj, arguments)) == "object" ? Fn.apply(obj, arguments) : obj
+    }
+
+  </script>
+</body>
+</html>
