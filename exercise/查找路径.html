@@ -8,6 +8,7 @@
 </head>
 <body>
   <script>
+    // data中的元素id是唯一值，寻找id为6的路径
     const data = [
       {
         "id": "1",
@@ -55,6 +56,47 @@
         "sub": null
       }
     ]
+    // function search(data, num) {
+    //   for (let i = 0; i < data.length; i++) {
+    //     if (subSearch(parent.sub, num)) {}
+    //   }
+    // }
+    // function subSearch(sub, num) {
+    //   if (sub.id === num) return true
+    //   for (let i = 0; i < sub.length; index++) {
+    //     sub.sub && subSearch(sub.sub, num)
+    //   }
+    //   return false
+    // }
+    function fun(data, target) {
+        for (let i = 0; i < data.length; i++) {
+          const result = help(data[i], target);
+          console.log(result);
+          if (result) return getPath(result);
+        }
+      }
+      function getPath(node) {
+        const path = [];
+        while (node) {
+          path.push(node.id);
+          node = node.parent;
+        }
+        return path.reverse();
+      }
+      function help(node, target) {
+        const { id, sub } = node;
+        if (id === target) return node;
+        if (sub) {
+          for (let i = 0; i < sub.length; i++) {
+            sub[i].parent = node;
+            const result = help(sub[i], target);
+            if (result) return result;
+          }
+        }
+        return null;
+      }
+
+      console.log(fun(data, "6"))
   </script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+   * Definition for a binary tree node.
+   * function TreeNode(val) {
+   *     this.val = val;
+   *     this.left = this.right = null;
+   * }
+   */
+      /**
+       * @param {TreeNode} root
+       * @return {number[][]}
+       */
+      var levelOrder = function (root) {
+
+        const result = [];
+        if (!root) return result;
+
+        let quque = [root];
+        let temp = [], res = [];   // temp用于存储下一层级的节点，而res用户存储当前层级的值
+        let p;
+        while (quque.length > 0 || temp.length > 0) {
+          if (quque.length === 0) {  // 当队列长度为0，说明当前层级所有节点已经访问过
+            result.push(res);    //保存当前层级的值
+            quque = temp;    //访问下一层
+            temp = [];
+            res = [];
+          }
+          p = quque.shift();
+          if (p) {
+            res.push(p.val);
+            temp.push(p.left);
+            temp.push(p.right);
+          }
+        }
+
+        return result;
+      };
+      levelOrder()
+
+  </script>
+</body>
+</html>
