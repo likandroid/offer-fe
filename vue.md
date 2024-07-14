@@ -65,3 +65,5 @@ Dep.prototype.notify = function () {
   })
 }
 Dep.target = null;
+
+测测测
